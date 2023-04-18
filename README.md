@@ -8,9 +8,9 @@ I have made a few operating systems in the past, but I was never pleased with th
 
 ## Features
 
-- 640x480 16 colors resolution
-- Basic disk operations
 - 64-bit, paging
+- 640x480 16 colors
+- Basic disk operations
 - C kernel
 
 ## Installation
@@ -23,7 +23,17 @@ I have made a few operating systems in the past, but I was never pleased with th
 
 ### Building and usage
 
-Run ```./build.sh``` to build and run the os.
+For building the binary:
+
+``` bash
+make build
+```
+
+For running:
+
+``` bash
+make run
+```
 
 ## License
 
