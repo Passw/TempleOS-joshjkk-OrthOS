@@ -2,6 +2,10 @@
 
 [About](#about) • [Features](#features) • [Installation](#installation) • [Usage](#building-and-usage) • [License](#license)
 
+## Disclaimer
+
+This OS is still being developed, anything could change at any moment without any notice.
+
 ## About
 
 I have made a few operating systems in the past, but I was never pleased with them. I hope to achieve all my goals in this one.
