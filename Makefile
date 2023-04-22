@@ -5,9 +5,9 @@ TARGET := OrthOS
 CC := gcc
 CFLAGS := -Wall -Wextra -pedantic -ggdb -std=c99 -m64 -ffreestanding -masm=intel 
 
-.PHONY: clean all
+.PHONY: all
 
-all: build
+all: clean build
 
 build:
 	mkdir -p $(BUILD_DIR)
@@ -26,6 +26,5 @@ clean:
 	sudo rm -r $(BUILD_DIR)
 
 run:
-	make
-	qemu-system-x86_64 -fda $(BUILD_DIR)/$(TARGET).bin
+	qemu-system-x86_64 $(BUILD_DIR)/$(TARGET).bin
 
