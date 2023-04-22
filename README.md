@@ -8,10 +8,11 @@ I have made a few operating systems in the past, but I was never pleased with th
 
 ## Features
 
-- 64-bit, paging
+- 64-bit
 - 640x480 16 colors
-- Basic disk operations
+- 1.44MB max floppy disk size
 - C kernel
+- Basic disk operations
 
 ## Installation
 
@@ -26,7 +27,7 @@ I have made a few operating systems in the past, but I was never pleased with th
 For building the binary:
 
 ``` bash
-make build
+make
 ```
 
 For running:
