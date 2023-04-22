@@ -1,9 +1,5 @@
 # OrthOS
 
-[![Build](https://github.com/joshjkk/OrthOS/actions/workflows/Build.yml/badge.svg)](https://github.com/joshjkk/OrthOS/actions/workflows/Build.yml)
-
-[About](#about) • [Features](#features) • [Installation](#installation) • [Usage](#building-and-usage) • [License](#license)
-
 ## Disclaimer
 
 This OS is still being developed, anything could change at any moment without any notice.
