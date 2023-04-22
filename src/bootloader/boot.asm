@@ -2,20 +2,21 @@
 
 KERNEL_ADDRESS equ 0x100000
 
-; 640x480 16 colors
-mov ax, 0x12
-int 0x10
+start:
+	; 640x480 16 colors
+	mov ax, 0x12
+	int 0x10
 
-; load gdt
-cli
-lgdt [gdt_descriptor] 
+	; load gdt
+	cli
+	lgdt [gdt_descriptor] 
 
-; switch to 32-bit protected mode
-mov eax, cr0 
-or eax, 0x1 
-mov cr0, eax 
+	; switch to 32-bit protected mode
+	mov eax, cr0 
+	or eax, 0x1 
+	mov cr0, eax 
 
-jmp 0x8:init_pm 
+	jmp 0x8:init_pm 
 
 
 [bits 32]
@@ -27,41 +28,41 @@ init_pm:
     mov fs, ax
     mov gs, ax
 
-call build_page_tables
+	call build_page_tables
 
 
-; enable PAE
-mov eax, cr4                 
-or eax, 1 << 5               
-mov cr4, eax
+	; enable PAE
+	mov eax, cr4                 
+	or eax, 1 << 5               
+	mov cr4, eax
 
-; optional : enable global-page mechanism by setting CR0.PGE bit to 1
-mov eax, cr4                 
-or eax, 1 << 7               
-mov cr4, eax
+	; optional : enable global-page mechanism by setting CR0.PGE bit to 1
+	mov eax, cr4                 
+	or eax, 1 << 7               
+	mov cr4, eax
 
-; load CR3 with PML4 base address
-; nb: in some examples online, the address is not offseted as it seems to
-; be in the proc datasheet (if you were wondering about this strange thing).
-mov eax, 0x1000
-mov cr3, eax
+	; load CR3 with PML4 base address
+	; nb: in some examples online, the address is not offseted as it seems to
+	; be in the proc datasheet (if you were wondering about this strange thing).
+	mov eax, 0x1000
+	mov cr3, eax
 
-; set LME bit in EFER register (address 0xC0000080)
-mov ecx, 0xC0000080     ; operand of 'rdmsr' and 'wrmsr'
-rdmsr                   ; read before pr ne pas écraser le contenu
-or eax, 1 << 8          ; eax : operand de wrmsr
-wrmsr
+	; set LME bit in EFER register (address 0xC0000080)
+	mov ecx, 0xC0000080     ; operand of 'rdmsr' and 'wrmsr'
+	rdmsr                   ; read before pr ne pas écraser le contenu
+	or eax, 1 << 8          ; eax : operand de wrmsr
+	wrmsr
 
-; enable paging by setting CR0.PG bit to 1
-mov eax, cr0
-or eax, (1 << 31)
-mov cr0, eax
+	; enable paging by setting CR0.PG bit to 1
+	mov eax, cr0
+	or eax, (1 << 31)
+	mov cr0, eax
 
-; load 64-bit GDT
-lgdt [gdt64_descriptor]
+	; load 64-bit GDT
+	lgdt [gdt64_descriptor]
 
-; jump to code segment in 64-bit GDT
-jmp 0x8:init_lm
+	; jump to code segment in 64-bit GDT
+	jmp 0x8:init_lm
 
 
 [bits 64]
