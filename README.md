@@ -12,7 +12,7 @@ I have made a few operating systems in the past, but I was never pleased with th
 
 - 64-bit
 - 640x480 16 colors
-- 1.44MB max floppy disk size
+- 1.44MB floppy disk size
 - C kernel
 - Basic disk operations
 
@@ -40,4 +40,4 @@ make run
 
 ## License
 
-OrthOS is under an Apache 2.0 license.
+OrthOS is under an [Apache 2.0](./LICENSE) license.
