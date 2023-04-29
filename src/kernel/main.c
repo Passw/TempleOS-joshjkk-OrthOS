@@ -1,23 +1,28 @@
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
-#define SCREEN_DEPTH 4 /* 16 colors, each represented by a nibble */
+#define WIDTH 640
+#define HEIGHT 480
+#define DEPTH 4
 
-#define VIDEO_ADDRESS (unsigned char *)0xA0000
+typedef unsigned char uint8_t;
+
+#define VIDEO_ADDRESS (uint8_t *)0xA0000
+
+void set_pixel(int x, int y) {
+    int pitch = (((WIDTH * DEPTH + 7) / 8) + 3) & ~3;
+    uint8_t *address = VIDEO_ADDRESS + (y * pitch + x / 2);
+
+    if (x % 2 == 0)
+        *address = (*address & 0xF0) | 0x0F;
+    else
+        *address = (*address & 0x0F) | 0xF0;
+}
+
+void clear() {
+    for (int y = 0; y < HEIGHT; y++)
+        for (int x = 0; x < WIDTH; x++)
+            set_pixel(x, y);
+}
 
 int main(void) {
-    int pitch = (SCREEN_WIDTH * SCREEN_DEPTH + 7) / 8;
-    pitch = (pitch + 3) & ~3; /* round up to nearest multiple of 4 */
-
-    for (int y = 0; y < SCREEN_HEIGHT; y++) {
-        for (int x = 0; x < SCREEN_WIDTH; x++) {
-            unsigned char *address = VIDEO_ADDRESS + y * pitch + x / 2;
-
-            /* fill white screen */
-            if (x % 2 == 0)
-                *address = (*address & 0xF0) | 0x0F;
-            else
-                *address = (*address & 0x0F) | 0xF0;
-        }
-    }
+    clear();
     return 0;
 }
