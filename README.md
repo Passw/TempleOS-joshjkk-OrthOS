@@ -29,7 +29,7 @@ I have made a few operating systems in the past, but I was never pleased with th
 For building the binary:
 
 ``` bash
-make
+make build
 ```
 
 For running:
