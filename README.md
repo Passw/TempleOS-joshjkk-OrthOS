@@ -1,12 +1,12 @@
 # OrthOS
 
-## Disclaimer
-
-This OS is still being developed, anything could change at any moment without any notice.
-
 ## About
 
 I have made a few operating systems in the past, but I was never pleased with them. I hope to achieve all my goals in this one.
+
+### Archived
+
+I have completed my goals. I am archiving this repo because [drawing in linear framebuffers](https://wiki.osdev.org/Drawing_In_a_Linear_Framebuffer) is ridiculously hard. Feel free to try it yourself.
 
 ## Features
 
